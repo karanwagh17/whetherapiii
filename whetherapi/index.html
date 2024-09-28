@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user api</title>
+    <style>
+        #container
+        {
+           
+            background-color: rgb(121, 162, 190);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+           
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="container" >
+        
+    </div>
+
+    <script>
+      function show()
+      {
+        fetch('https://reqres.in/api/users')
+        .then((res)=>res.json())
+        .then((data)=>{
+                let datas = data.data
+                console.log(datas);
+
+               let show = datas.forEach(e =>{
+            
+
+                let store = `
+                <div style="heught:400px; width:30%; margin:auto;">
+                <h1>No:${e.id}</h1>
+                <img src=${e.avatar} >
+                <p>${e.email}</span> 
+                <p >${e.first_name + " " + e.last_name}</p>
+                </div>
+                `
+                document.getElementById('container').innerHTML += store;
+                
+                
+               });
+             
+               
+            }
+            )
+        .catch((err)=>console.log(err))
+      }
+      show();
+    </script>
+</body>
+</html>
